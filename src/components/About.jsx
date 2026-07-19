@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { ShieldCheck, Target, Heart } from "lucide-react";
+import TypewriterHeading from "@/components/TypewriterHeading";
 
 export default function About() {
   const highlights = [
@@ -37,13 +38,15 @@ export default function About() {
               />
             </div>
             
-            {/* Experience badge */}
-            <div className="absolute -bottom-6 -right-6 md:right-4 bg-navy-blue text-white p-6 rounded-xl shadow-lg border border-white max-w-[200px]">
-              <div className="text-3xl font-extrabold text-brand-red">1964</div>
-              <div className="text-xs uppercase tracking-wider font-semibold text-slate-300 mt-1">
-                Establishment Year
+            {/* Experience badge - Small & positioned outside the image on small screens */}
+            <div className="mt-4 lg:mt-0 lg:absolute lg:-bottom-4 lg:-right-4 bg-navy-blue text-white p-3.5 sm:p-4 rounded-xl shadow-xl border border-white/20 w-full sm:w-auto sm:max-w-[180px] flex sm:flex-col items-center sm:items-start justify-between gap-2 z-20">
+              <div>
+                <div className="text-xl sm:text-2xl font-black text-brand-red leading-none">1964</div>
+                <div className="text-[10px] sm:text-xs uppercase tracking-wider font-bold text-slate-200 mt-1">
+                  Establishment Year
+                </div>
               </div>
-              <div className="text-sm font-bold mt-2 border-t border-white/20 pt-2">
+              <div className="text-[11px] sm:text-xs font-semibold border-l sm:border-l-0 sm:border-t border-white/20 pl-3 sm:pl-0 sm:pt-1.5 text-slate-100">
                 Farm Values... Future Ready
               </div>
             </div>
@@ -56,7 +59,7 @@ export default function About() {
                 About Our Enterprise
               </span>
               <h2 className="text-3xl font-extrabold text-navy-blue sm:text-4xl">
-                Building Modern, Profitable & Sustainable Dairy Farms
+                <TypewriterHeading text="Building Modern, Profitable & Sustainable Dairy Farms" cursorClassName="text-brand-red animate-pulse ml-0.5" />
               </h2>
             </div>
             

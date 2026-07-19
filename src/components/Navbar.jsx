@@ -71,7 +71,7 @@ export default function Navbar() {
           {/* Desktop Navigation Links */}
           <div 
             ref={containerRef}
-            className="hidden md:flex md:items-center md:space-x-4 relative"
+            className="hidden xl:flex xl:items-center xl:space-x-4 relative"
             onMouseLeave={() => setHoveredRect(null)}
           >
             {/* Sliding Highlight Pill */}
@@ -103,8 +103,8 @@ export default function Navbar() {
             </AnimatedButton>
           </div>
 
-          {/* Mobile Menu Button */}
-          <div className="flex md:hidden">
+          {/* Mobile Menu Button (Shows on mobile, tablet, iPad Mini, iPad Air, iPad Pro) */}
+          <div className="flex xl:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
               type="button"
@@ -125,7 +125,7 @@ export default function Navbar() {
 
       {/* Mobile Menu Drawer */}
       <div
-        className={`md:hidden transition-all duration-300 ease-in-out ${
+        className={`xl:hidden transition-all duration-300 ease-in-out ${
           isOpen ? "max-h-screen opacity-100 border-t border-slate-100" : "max-h-0 opacity-0 overflow-hidden"
         }`}
         id="mobile-menu"

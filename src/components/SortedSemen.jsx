@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Star, ShieldCheck, HeartPulse, Sparkles, TrendingUp, CheckCircle } from "lucide-react";
+import TypewriterHeading from "@/components/TypewriterHeading";
 
 export default function SortedSemen() {
   const brands = [
@@ -55,13 +56,13 @@ export default function SortedSemen() {
               <div className="absolute inset-0 bg-navy-blue/15" />
             </div>
 
-            {/* Quick stats floating bubble */}
-            <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-2xl shadow-xl border border-slate-100 flex items-center space-x-4 max-w-[240px]">
-              <div className="h-12 w-12 rounded-xl bg-brand-red text-white flex items-center justify-center flex-shrink-0 font-bold text-xl">
+            {/* Quick stats floating bubble - Small & positioned outside the image on small screens */}
+            <div className="mt-4 lg:mt-0 lg:absolute lg:-bottom-4 lg:-left-4 bg-white p-3.5 sm:p-4 rounded-xl shadow-xl border border-slate-100 flex items-center space-x-3 w-full sm:w-auto sm:max-w-[220px] z-20">
+              <div className="h-10 w-10 sm:h-11 sm:w-11 rounded-xl bg-brand-red text-white flex items-center justify-center flex-shrink-0 font-black text-base sm:text-lg">
                 90%
               </div>
-              <div className="text-xs text-slate-600 font-bold leading-snug">
-                Female Calves Probability Rate using Premium Sexed Semen.
+              <div className="text-[11px] sm:text-xs text-slate-700 font-bold leading-snug">
+                Female Calves Probability Rate using Sexed Semen.
               </div>
             </div>
           </div>
@@ -73,7 +74,7 @@ export default function SortedSemen() {
                 Breeding & Genetics Solutions
               </span>
               <h2 className="text-3xl font-extrabold text-navy-blue sm:text-4xl">
-                All Kind of Sorted Semen Available at One Roof
+                <TypewriterHeading text="All Kind of Sorted Semen Available at One Roof" cursorClassName="text-brand-red animate-pulse ml-0.5" />
               </h2>
               <p className="text-slate-600 text-sm">
                 We supply premium genetic resources imported and sourced from top globally certified laboratories to guarantee high fertility and superior cattle genetics.

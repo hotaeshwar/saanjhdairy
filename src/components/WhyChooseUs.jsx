@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Check } from "lucide-react";
+import TypewriterHeading from "@/components/TypewriterHeading";
 
 export default function WhyChooseUs() {
   const points = [
@@ -25,7 +26,7 @@ export default function WhyChooseUs() {
             Our Key Strengths
           </span>
           <h2 className="text-3xl font-extrabold text-navy-blue sm:text-4xl">
-            Why Choose Saanjh Dairy Solutions?
+            <TypewriterHeading text="Why Choose Saanjh Dairy Solutions?" cursorClassName="text-brand-red animate-pulse ml-0.5" />
           </h2>
           <p className="text-base text-slate-600">
             With a focus on customer satisfaction and animal welfare, we stand as a trusted engineering partner for dairy farmers.
@@ -68,11 +69,16 @@ export default function WhyChooseUs() {
               <div className="absolute inset-0 bg-navy-blue/5" />
             </div>
 
-            {/* Float badge */}
-            <div className="absolute -bottom-6 -right-6 bg-navy-blue text-white p-6 rounded-2xl shadow-xl border border-white max-w-[200px] text-center">
-              <div className="text-lg font-bold text-brand-red uppercase">Since 1964</div>
-              <p className="text-xs text-slate-300 mt-1 leading-normal">
-                Serving the Indian dairy farming community with absolute integrity.
+            {/* Float badge - Small & positioned outside the image on small screens */}
+            <div className="mt-4 lg:mt-0 lg:absolute lg:-bottom-4 lg:-right-4 bg-navy-blue text-white p-3.5 sm:p-4 rounded-xl shadow-xl border border-white/20 w-full sm:w-auto sm:max-w-[200px] flex sm:flex-col items-center sm:items-start justify-between gap-2 z-20">
+              <div>
+                <div className="text-base sm:text-lg font-black text-brand-red uppercase leading-none">Since 1964</div>
+                <div className="text-[10px] sm:text-xs uppercase tracking-wider font-bold text-slate-200 mt-1">
+                  Trusted Enterprise
+                </div>
+              </div>
+              <p className="text-[11px] sm:text-xs font-semibold border-l sm:border-l-0 sm:border-t border-white/20 pl-3 sm:pl-0 sm:pt-1.5 text-slate-200 leading-snug">
+                Serving the Indian dairy farming community with integrity.
               </p>
             </div>
           </div>

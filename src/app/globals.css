@@ -75,3 +75,22 @@ body {
   animation: particle-burst 0.7s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
 }
 
+/* Parting Doors Transition */
+.parting-door-left {
+  transition: transform 0.75s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.parting-door-right {
+  transition: transform 0.75s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+/* Category PNG Icon Tinting */
+.category-image-icon {
+  filter: brightness(0) saturate(100%) invert(48.02%) sepia(99.46%) saturate(224.58%) hue-rotate(112.15deg) brightness(70.33%) contrast(149.64%); /* emerald-700 (dark green) */
+  transition: filter 300ms ease;
+}
+
+.group:hover .category-image-icon,
+.category-image-icon.active {
+  filter: brightness(0) saturate(100%) invert(48%) sepia(87%) saturate(1210%) hue-rotate(135deg) brightness(94%) contrast(101%); /* emerald-600 (active green) */
+}

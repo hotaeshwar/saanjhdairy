@@ -1,4 +1,5 @@
 import { CheckCircle2, ChevronRight } from "lucide-react";
+import TypewriterHeading from "@/components/TypewriterHeading";
 
 export default function Expertise() {
   const expertiseItems = [
@@ -28,7 +29,7 @@ export default function Expertise() {
             Our Expertise & Services
           </span>
           <h2 className="text-3xl font-extrabold text-navy-blue sm:text-4xl">
-            Professional Solutions Tailored to Your Farm Need
+            <TypewriterHeading text="Professional Solutions Tailored to Your Farm Need" cursorClassName="text-brand-red animate-pulse ml-0.5" />
           </h2>
           <p className="text-base text-slate-600">
             From design to automation, we deliver comprehensive setup engineering to help establish productive dairy farming operations.

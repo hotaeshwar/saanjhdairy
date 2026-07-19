@@ -7,16 +7,22 @@ export default function ScrollReveal({ children, className = "", delay = 0 }) {
   const ref = useRef(null);
 
   useEffect(() => {
+    // On mobile and tablet screens, render immediately so components load instantly without delay
+    if (typeof window !== "undefined" && window.innerWidth < 1024) {
+      setIsVisible(true);
+      return;
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
-          observer.unobserve(entry.target);
+          if (ref.current) observer.unobserve(ref.current);
         }
       },
       {
-        threshold: 0.1, // trigger when 10% is visible
-        rootMargin: "0px 0px -50px 0px", // trigger slightly before entering viewport
+        threshold: 0.01,
+        rootMargin: "250px 0px 250px 0px", // Pre-load 250px before entering viewport
       }
     );
 
@@ -34,10 +40,10 @@ export default function ScrollReveal({ children, className = "", delay = 0 }) {
   return (
     <div
       ref={ref}
-      className={`transition-all duration-700 ease-out ${
-        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+      className={`transition-all duration-300 ease-out ${
+        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"
       } ${className}`}
-      style={{ transitionDelay: `${delay}ms` }}
+      style={{ transitionDelay: `${Math.min(delay, 50)}ms` }}
     >
       {children}
     </div>

@@ -1,7 +1,49 @@
+"use client";
+
+import { useState, useEffect, useRef } from "react";
+import { createPortal } from "react-dom";
 import Image from "next/image";
-import { Shield, Sparkles, Check } from "lucide-react";
+import { Shield, Sparkles, Check, X, CheckCircle2 } from "lucide-react";
+import TypewriterHeading from "@/components/TypewriterHeading";
 
 export default function MilkingMachines() {
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [redirectUrl, setRedirectUrl] = useState("");
+  const [showSuccessToast, setShowSuccessToast] = useState(false);
+  const modalRef = useRef(null);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setRedirectUrl(window.location.origin + window.location.pathname + "?submitted=true");
+      
+      const queryParams = new URLSearchParams(window.location.search);
+      if (queryParams.get("submitted") === "true") {
+        setShowSuccessToast(true);
+        // Clear query parameters
+        window.history.replaceState({}, document.title, window.location.pathname);
+      }
+    }
+  }, []);
+
+  // Lock background scroll when modal is open
+  useEffect(() => {
+    if (selectedProduct) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [selectedProduct]);
+
+  useEffect(() => {
+    if (selectedProduct && modalRef.current) {
+      modalRef.current.focus();
+      modalRef.current.scrollTop = 0;
+    }
+  }, [selectedProduct]);
+
   const ssFeatures = [
     "Stainless Steel Build",
     "Rust Proof",
@@ -30,7 +72,22 @@ export default function MilkingMachines() {
   ];
 
   return (
-    <section id="milking-machines" className="py-20 bg-slate-50 border-t border-slate-100">
+    <section id="milking-machines" className="py-20 bg-slate-50 border-t border-slate-100 relative">
+      
+      {/* Toast Notification for native FormSubmit success redirect */}
+      {showSuccessToast && (
+        <div className="fixed bottom-5 right-5 z-[10000] bg-emerald-600 text-white rounded-2xl p-4 shadow-2xl flex items-center space-x-3 max-w-sm animate-bounce">
+          <CheckCircle2 className="h-6 w-6 text-white flex-shrink-0" />
+          <div>
+            <div className="font-bold">Inquiry Submitted!</div>
+            <div className="text-xs opacity-90">Thank you! We will get in touch with you shortly.</div>
+          </div>
+          <button onClick={() => setShowSuccessToast(false)} className="text-white hover:opacity-85">
+            <X className="h-4 w-4" />
+          </button>
+        </div>
+      )}
+
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
         {/* Section Title */}
@@ -39,7 +96,7 @@ export default function MilkingMachines() {
             Milking Equipment Comparison
           </span>
           <h2 className="text-3xl font-extrabold text-navy-blue sm:text-4xl">
-            SS Milking Machine vs MS Milking Machine
+            <TypewriterHeading text="SS Milking Machine vs MS Milking Machine" cursorClassName="text-brand-red animate-pulse ml-0.5" />
           </h2>
           <p className="text-base text-slate-600">
             Compare our two premium build configurations to select the best match for your operational demands and budget.
@@ -85,12 +142,12 @@ export default function MilkingMachines() {
             </div>
 
             <div className="pt-8">
-              <a
-                href="#contact"
-                className="w-full inline-flex justify-center items-center rounded-xl bg-navy-blue text-white px-5 py-3 font-bold hover:bg-brand-red transition-all duration-300 shadow-sm"
+              <button
+                onClick={() => setSelectedProduct("SS Milking Machine")}
+                className="w-full inline-flex justify-center items-center rounded-xl bg-navy-blue text-white px-5 py-3 font-bold hover:bg-[#38BDF8] hover:text-[#0C1E3A] transition-all duration-300 shadow-sm cursor-pointer"
               >
                 Inquire SS Model
-              </a>
+              </button>
             </div>
           </div>
 
@@ -126,12 +183,12 @@ export default function MilkingMachines() {
             </div>
 
             <div className="pt-8">
-              <a
-                href="#contact"
-                className="w-full inline-flex justify-center items-center rounded-xl border border-slate-300 bg-white text-slate-700 px-5 py-3 font-bold hover:bg-slate-50 transition-all duration-300"
+              <button
+                onClick={() => setSelectedProduct("MS Milking Machine")}
+                className="w-full inline-flex justify-center items-center rounded-xl border border-slate-300 bg-white text-slate-700 px-5 py-3 font-bold hover:bg-slate-50 transition-all duration-300 cursor-pointer"
               >
                 Inquire MS Model
-              </a>
+              </button>
             </div>
           </div>
 
@@ -168,6 +225,137 @@ export default function MilkingMachines() {
         </div>
 
       </div>
+
+      {/* Inquiry Modal Overlay */}
+      {selectedProduct && typeof document !== "undefined" && createPortal(
+        <div 
+          className="fixed inset-0 z-[9999] overflow-y-auto bg-slate-900/60 backdrop-blur-sm"
+          onClick={() => setSelectedProduct(null)}
+        >
+          <div className="flex min-h-full items-start justify-center p-4">
+            {/* Modal Dialog Content Container */}
+            <div 
+              ref={modalRef}
+              tabIndex={-1}
+              className="relative bg-white rounded-3xl p-6 sm:p-8 max-w-lg w-full shadow-2xl border border-slate-100/80 z-10 transform scale-100 transition-all duration-300 animate-fade-in-up focus:outline-none my-8"
+              onClick={(e) => e.stopPropagation()}
+            >
+            
+            {/* Close Button */}
+            <button
+              onClick={() => setSelectedProduct(null)}
+              className="absolute top-4 right-4 p-2 text-slate-400 hover:text-navy-blue hover:bg-slate-100 rounded-full transition-colors cursor-pointer"
+            >
+              <X className="h-5 w-5" />
+            </button>
+
+            <form 
+              action="https://formsubmit.co/info@saanjhdairysolutions.com" 
+              method="POST" 
+              className="space-y-5"
+            >
+              {/* FormSubmit custom configurations */}
+              <input type="hidden" name="_subject" value={`New Inquiry for ${selectedProduct}`} />
+              <input type="hidden" name="_next" value={redirectUrl} />
+              <input type="hidden" name="_captcha" value="false" />
+
+              <div className="space-y-1.5">
+                <span className="text-xs uppercase font-extrabold tracking-wider text-brand-red">
+                  Product Inquiry
+                </span>
+                <h3 className="text-xl sm:text-2xl font-black text-navy-blue uppercase leading-tight">
+                  Submit Inquiry
+                </h3>
+                <p className="text-xs text-slate-500 font-medium">
+                  Please provide your contact information and details below. Our experts will get in touch with you shortly.
+                </p>
+              </div>
+
+              {/* Pre-filled Product Name */}
+              <div className="space-y-1.5">
+                <label className="text-xs font-bold text-slate-600 uppercase tracking-wider">
+                  Selected Product
+                </label>
+                <input
+                  type="text"
+                  name="product"
+                  readOnly
+                  value={selectedProduct}
+                  className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-bold text-[#003B8E] focus:outline-none"
+                />
+              </div>
+
+              {/* Full Name */}
+              <div className="space-y-1.5">
+                <label className="text-xs font-bold text-slate-600 uppercase tracking-wider">
+                  Full Name *
+                </label>
+                <input
+                  type="text"
+                  name="name"
+                  required
+                  placeholder="Your full name"
+                  className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-800 placeholder-slate-400 focus:border-[#003B8E] focus:outline-none transition-colors"
+                />
+              </div>
+
+              {/* Email & Phone Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="space-y-1.5">
+                  <label className="text-xs font-bold text-slate-600 uppercase tracking-wider">
+                    Email Address *
+                  </label>
+                  <input
+                    type="email"
+                    name="email"
+                    required
+                    placeholder="name@example.com"
+                    className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-800 placeholder-slate-400 focus:border-[#003B8E] focus:outline-none transition-colors"
+                  />
+                </div>
+                <div className="space-y-1.5">
+                  <label className="text-xs font-bold text-slate-600 uppercase tracking-wider">
+                    Phone Number *
+                  </label>
+                  <input
+                    type="tel"
+                    name="phone"
+                    required
+                    placeholder="Your phone number"
+                    className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-800 placeholder-slate-400 focus:border-[#003B8E] focus:outline-none transition-colors"
+                  />
+                </div>
+              </div>
+
+              {/* Message */}
+              <div className="space-y-1.5">
+                <label className="text-xs font-bold text-slate-600 uppercase tracking-wider">
+                  Inquiry Details *
+                </label>
+                <textarea
+                  name="message"
+                  required
+                  rows={3}
+                  placeholder="Describe your herd size, installation site, or mechanical requirements..."
+                  className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-800 placeholder-slate-400 focus:border-[#003B8E] focus:outline-none transition-colors resize-none"
+                />
+              </div>
+
+              {/* Submit Button */}
+              <button
+                type="submit"
+                className="w-full rounded-xl bg-navy-blue hover:bg-brand-red text-white py-3.5 text-sm font-bold shadow-md hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer"
+              >
+                Submit Inquiry
+              </button>
+            </form>
+
+            </div>
+          </div>
+        </div>,
+        document.body
+      )}
+
     </section>
   );
 }

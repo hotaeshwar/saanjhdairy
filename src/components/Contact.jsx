@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Phone, Mail, MapPin, BadgeCheck, FileText, Send, CalendarDays } from "lucide-react";
+import TypewriterHeading from "@/components/TypewriterHeading";
 import AnimatedButton from "@/components/AnimatedButton";
 
 export default function Contact() {
@@ -50,7 +51,7 @@ export default function Contact() {
             Get In Touch
           </span>
           <h2 className="text-3xl font-extrabold text-navy-blue sm:text-4xl">
-            Contact SAANJH Dairy Solutions
+            <TypewriterHeading text="Contact SAANJH Dairy Solutions" cursorClassName="text-brand-red animate-pulse ml-0.5" />
           </h2>
           <p className="text-base text-slate-600">
             Submit your queries, request blueprints, or consult with our project developers.

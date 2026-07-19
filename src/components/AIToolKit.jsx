@@ -1,5 +1,6 @@
 import Image from "next/image";
-import { Thermometer, Layers, Check } from "lucide-react";
+import { Check, Syringe, ShieldCheck } from "lucide-react";
+import TypewriterHeading from "@/components/TypewriterHeading";
 
 export default function AIToolKit() {
   const kitItems = [
@@ -24,7 +25,7 @@ export default function AIToolKit() {
             Artificial Insemination Setup
           </span>
           <h2 className="text-3xl font-extrabold text-navy-blue sm:text-4xl">
-            A.I. Tool Kit & Equipment
+            <TypewriterHeading text="A.I. Tool Kit & Equipment" cursorClassName="text-brand-red animate-pulse ml-0.5" />
           </h2>
           <p className="text-base text-slate-600">
             Basic materials and specialized diagnostic equipment required for successful artificial breeding programs on your dairy farm.
