@@ -12,27 +12,27 @@ export default function SplashScreen() {
     // Lock background scroll during splash
     document.body.style.overflow = "hidden";
 
-    // Progress bar animation timer
+    // Progress bar animation timer (smooth build-up over ~2.4 seconds)
     const interval = setInterval(() => {
       setProgress((prev) => {
         if (prev >= 100) {
           clearInterval(interval);
           return 100;
         }
-        return prev + 10;
+        return prev + 4;
       });
-    }, 25);
+    }, 90);
 
-    // Fade out timer
+    // Start fade out at 2.4 seconds
     const fadeTimer = setTimeout(() => {
       setFadeOut(true);
-    }, 700);
+    }, 2400);
 
-    // Hide splash screen timer
+    // Hide splash screen completely at 3.0 seconds
     const hideTimer = setTimeout(() => {
       setLoading(false);
       document.body.style.overflow = "";
-    }, 1100);
+    }, 3000);
 
     return () => {
       clearInterval(interval);

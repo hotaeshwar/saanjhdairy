@@ -30,7 +30,6 @@ export default function Navbar() {
     { name: "Products", to: "/products" },
     { name: "Services", to: "/services" },
     { name: "Why Choose Us", to: "/why-choose" },
-    { name: "Contact", to: "/contact" },
   ];
 
   const handleMouseEnter = (e) => {
