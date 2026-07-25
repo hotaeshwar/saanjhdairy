@@ -376,7 +376,7 @@ export default function DairyNutrition() {
             alt="Dairy Nutrition Solutions"
             fill
             priority
-            className="object-cover object-bottom opacity-20"
+            className="object-cover object-bottom opacity-35"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#f5f7f4] via-[#f5f7f4]/80 to-transparent z-10" />
         </div>

@@ -163,7 +163,7 @@ export default function FarmSetup() {
         </div>
 
         {/* Hero Content Left Column */}
-        <div className="w-full lg:w-[55%] flex items-center bg-[#0C1E3A] relative z-20">
+        <div className="w-full lg:w-[55%] flex items-center bg-transparent lg:bg-[#0C1E3A] relative z-20">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:pl-16 lg:pr-8 w-full py-16 lg:py-24 space-y-6">
             
             {/* Breadcrumbs */}

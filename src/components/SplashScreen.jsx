@@ -32,6 +32,7 @@ export default function SplashScreen() {
     const hideTimer = setTimeout(() => {
       setLoading(false);
       document.body.style.overflow = "";
+      window.scrollTo(0, 0);
     }, 3000);
 
     return () => {

@@ -118,6 +118,11 @@ function AppContent() {
     target: null,
   });
 
+  // Scroll to top on route change
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
+
   const triggerTransition = (targetPath) => {
     if (transition.phase !== "idle") return;
 
