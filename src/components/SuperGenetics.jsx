@@ -28,32 +28,6 @@ import {
 import { useTransition } from "./AppRouter";
 import TypewriterHeading from "@/components/TypewriterHeading";
 
-const CowIcon = (props) => (
-  <svg 
-    viewBox="0 0 24 24" 
-    fill="none" 
-    stroke="currentColor" 
-    strokeWidth="1.75" 
-    strokeLinecap="round" 
-    strokeLinejoin="round" 
-    {...props}
-  >
-    {/* Head outline */}
-    <path d="M12 21c-2.5 0-4-1.5-4-4v-5h8v5c0 2.5-1.5 4-4 4z" />
-    {/* Top head bridge */}
-    <path d="M8 12V8a4 4 0 0 1 8 0v4" />
-    {/* Horns curving outward and upward */}
-    <path d="M7 8C6 6.5 4.5 5 4 2.5c2.5.5 3.5 2 4 4.5" />
-    <path d="M17 8C18 6.5 19.5 5 20 2.5c-2.5.5-3.5 2-4 4.5" />
-    {/* Ears hanging downwards and out */}
-    <path d="M3 9.5c.5-.5 2 .5 3 2.5" />
-    <path d="M21 9.5c-.5-.5-2 .5-3 2.5" />
-    {/* Nostrils */}
-    <line x1="10.5" y1="17.5" x2="10.5" y2="18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-    <line x1="13.5" y1="17.5" x2="13.5" y2="18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-  </svg>
-);
-
 // Count-up stats counter component triggered on scroll visibility
 function Counter({ value, suffix, duration = 1500 }) {
   const [count, setCount] = useState(0);
@@ -683,8 +657,8 @@ export default function SuperGenetics() {
           <div className="grid grid-cols-2 md:grid-cols-5 gap-6 md:gap-0 bg-white border border-slate-100 rounded-3xl p-6 md:p-8 shadow-sm">
             
             <div className="flex flex-col items-center space-y-2 md:border-r border-slate-200 last:border-r-0 md:px-4">
-              <div className="text-slate-800">
-                <CowIcon className="h-6 w-6" />
+              <div className="text-slate-800 flex items-center justify-center h-6 w-6">
+                <Image src="/images/cow.png" alt="Cow Icon" width={24} height={24} className="h-6 w-6 object-contain" />
               </div>
               <div>
                 <div className="text-lg sm:text-xl font-black text-navy-blue leading-none">

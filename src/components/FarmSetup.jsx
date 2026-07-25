@@ -376,7 +376,8 @@ export default function FarmSetup() {
                 </div>
                 {/* View All Projects */}
                 <button
-                  className="text-xs font-bold text-[#003B8E] hover:text-brand-red hover:underline transition-all cursor-pointer pb-1"
+                  disabled
+                  className="text-xs font-bold text-slate-400 cursor-not-allowed pb-1"
                 >
                   View All Projects
                 </button>
