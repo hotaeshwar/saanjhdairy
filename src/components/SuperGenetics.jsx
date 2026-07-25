@@ -658,7 +658,7 @@ export default function SuperGenetics() {
             
             <div className="flex flex-col items-center space-y-2 md:border-r border-slate-200 last:border-r-0 md:px-4">
               <div className="text-slate-800 flex items-center justify-center h-6 w-6">
-                <Image src="/images/cow.png" alt="Cow Icon" width={24} height={24} className="h-6 w-6 object-contain" />
+                <Image src="/images/cow.png" alt="Cow Icon" width={24} height={24} className="h-6 w-6 object-contain" style={{ filter: 'brightness(0) saturate(100%) invert(18%) sepia(87%) saturate(5412%) hue-rotate(215deg) brightness(91%) contrast(101%)' }} />
               </div>
               <div>
                 <div className="text-lg sm:text-xl font-black text-navy-blue leading-none">
